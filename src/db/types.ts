@@ -59,7 +59,6 @@ export interface Batch extends BaseEntity {
   /** odlew w dwóch etapach / dystanse blokujące styropian */
   castMethod?: 'spacers' | 'two_stage' | 'other'
   notes?: string
-  photoIds: ID[]
   /** faktyczne daty rozpoczęcia etapów, od nich liczy się reszta harmonogramu */
   stageActuals: Partial<Record<StageKey, ISODate>>
   archived?: boolean
@@ -75,7 +74,6 @@ export interface Ball extends BaseEntity {
   cracksNote?: string
   lastPh?: number | null
   notes?: string
-  photoIds: ID[]
   saleId?: ID | null
 }
 
@@ -114,6 +112,8 @@ export interface CalendarEvent extends BaseEntity {
   kind: EventKind
   done: boolean
   doneAt?: ISODate
+  /** odhaczone jako „pominięte” (np. niepotrzebne zraszanie po deszczu) */
+  skipped?: boolean
   batchId?: ID | null
   source: EventSource
   stage?: StageKey
@@ -127,7 +127,6 @@ export interface JournalEntry extends BaseEntity {
   title?: string
   text: string
   tags: string[]
-  photoIds: ID[]
   batchId?: ID | null
 }
 

@@ -4,7 +4,7 @@ import type { BallStatus, ChannelKey, ExpenseCategory, InstructionCategory, Meas
 export interface StatusMeta {
   label: string
   short: string
-  /** kolor kropki / paska */
+  /** kolor w pasku etapów: jedna zieleń od jasnej (forma) do ciemnej (gotowa), sprawdzona walidatorem */
   color: string
   /** klasy odznaki */
   badge: string
@@ -17,12 +17,12 @@ export const BALL_STATUSES: BallStatus[] = ['in_mold', 'curing', 'rinsing', 'ino
 export const ACTIVE_STATUSES: BallStatus[] = ['in_mold', 'curing', 'rinsing', 'inoculated', 'establishing', 'ready']
 
 export const STATUS_META: Record<BallStatus, StatusMeta> = {
-  in_mold: { label: 'W formie', short: 'Forma', color: '#8c9488', badge: 'bg-ink-100 text-ink-700 ring-ink-200', stage: 'setting' },
-  curing: { label: 'Dojrzewa', short: 'Dojrzewa', color: '#c7a25a', badge: 'bg-cream-100 text-cream-800 ring-cream-200', stage: 'curing' },
-  rinsing: { label: 'Płukanie', short: 'Płukanie', color: '#4f8798', badge: 'bg-water-50 text-water-700 ring-water-100', stage: 'rinsing' },
-  inoculated: { label: 'Zaszczepiona', short: 'Zaszczep.', color: '#95bc85', badge: 'bg-moss-100 text-moss-800 ring-moss-200', stage: 'inoculation' },
-  establishing: { label: 'Mech się przyjmuje', short: 'Mech rośnie', color: '#5b8a4c', badge: 'bg-moss-200 text-moss-900 ring-moss-300', stage: 'establishing' },
-  ready: { label: 'Gotowa', short: 'Gotowa', color: '#2f4a2c', badge: 'bg-moss-900 text-white ring-moss-900', stage: 'selling' },
+  in_mold: { label: 'W formie', short: 'Forma', color: '#9dbd88', badge: 'bg-ink-100 text-ink-700 ring-ink-200', stage: 'setting' },
+  curing: { label: 'Dojrzewa', short: 'Dojrzewa', color: '#7fa766', badge: 'bg-cream-100 text-cream-800 ring-cream-200', stage: 'curing' },
+  rinsing: { label: 'Płukanie', short: 'Płukanie', color: '#64904f', badge: 'bg-water-50 text-water-700 ring-water-100', stage: 'rinsing' },
+  inoculated: { label: 'Zaszczepiona', short: 'Zaszczep.', color: '#4c783e', badge: 'bg-moss-100 text-moss-800 ring-moss-200', stage: 'inoculation' },
+  establishing: { label: 'Mech się przyjmuje', short: 'Mech rośnie', color: '#38602f', badge: 'bg-moss-200 text-moss-900 ring-moss-300', stage: 'establishing' },
+  ready: { label: 'Gotowa', short: 'Gotowa', color: '#26401f', badge: 'bg-moss-900 text-white ring-moss-900', stage: 'selling' },
   sold: { label: 'Sprzedana', short: 'Sprzedana', color: '#c58b1c', badge: 'bg-cream-200 text-cream-800 ring-cream-300', stage: null },
   waste: { label: 'Odpad', short: 'Odpad', color: '#c0624d', badge: 'bg-clay-50 text-clay-700 ring-clay-100', stage: null },
 }

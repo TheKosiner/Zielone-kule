@@ -4,6 +4,7 @@ import { FeedbackProvider } from '@/components/ui/Feedback'
 import { SettingsProvider } from '@/hooks/useSettings'
 import { AppShell } from '@/components/layout/AppShell'
 import { Splash } from '@/components/layout/Splash'
+import { TaskCompletionProvider } from '@/features/calendar/TaskCompletion'
 
 const DashboardPage = lazy(() => import('@/features/dashboard/DashboardPage'))
 const BatchesPage = lazy(() => import('@/features/batches/BatchesPage'))
@@ -31,6 +32,7 @@ export function App() {
       <ScrollToTop />
       <FeedbackProvider>
         <SettingsProvider fallback={<Splash />}>
+          <TaskCompletionProvider>
           <AppShell>
             <Suspense fallback={<div className="py-24" />}>
               <Routes>
@@ -49,6 +51,7 @@ export function App() {
               </Routes>
             </Suspense>
           </AppShell>
+          </TaskCompletionProvider>
         </SettingsProvider>
       </FeedbackProvider>
     </HashRouter>

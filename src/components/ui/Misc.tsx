@@ -20,7 +20,7 @@ interface PageHeaderProps {
 export function PageHeader({ title, subtitle, actions, eyebrow }: PageHeaderProps) {
   return (
     <header className="mb-5 flex flex-wrap items-end gap-x-4 gap-y-3 sm:mb-7">
-      <div className="min-w-0 flex-1">
+      <div className="w-full min-w-0 sm:w-auto sm:flex-1">
         {eyebrow && <div className="mb-1 text-xs font-semibold tracking-[0.12em] text-moss-600 uppercase">{eyebrow}</div>}
         <h1 className="text-[26px] leading-tight font-semibold tracking-tight text-ink-900 sm:text-3xl">{title}</h1>
         {subtitle && <p className="mt-1 text-[15px] text-ink-500">{subtitle}</p>}
