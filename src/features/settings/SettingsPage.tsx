@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import { GeneralSettings, RecipeSettings, StagesSettings } from './ProductionSettings'
 import { ChannelSettings, CostSettings, JournalTagSettings, LimitSettings } from './MoneySettings'
 import { DataSettings } from './DataSettings'
+import { AppSettings } from './AppSettings'
 
 const SECTIONS = [
   { id: 'dane', label: 'Kopia zapasowa' },
+  { id: 'aplikacja', label: 'Aplikacja' },
   { id: 'receptura', label: 'Receptura' },
   { id: 'etapy', label: 'Etapy i harmonogram' },
   { id: 'koszty', label: 'Koszty' },
@@ -59,6 +61,7 @@ export default function SettingsPage() {
         </nav>
         <div className="min-w-0 space-y-5">
           <DataSettings />
+          <AppSettings />
           <RecipeSettings />
           <StagesSettings />
           <CostSettings />

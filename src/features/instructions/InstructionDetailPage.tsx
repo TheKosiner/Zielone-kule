@@ -94,7 +94,7 @@ function InstructionView({ ins, onEdit }: { ins: Instruction; onEdit: () => void
       {isCare ? (
         <CareCard ins={ins} />
       ) : (
-        <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.4fr_1fr]">
           <div className="space-y-5">
             {ins.summary && (
               <Callout tone="moss" className="text-[15px]">

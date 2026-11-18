@@ -60,7 +60,7 @@ export function PriceCalculator({ planMaterials, actualMaterials, planHours, act
         }
       />
       <CardBody>
-        <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_20rem]">
           <div className="space-y-5">
             <Slider label="Cena sprzedaży" value={v.price} onChange={(price) => set({ price })} min={39} max={199} step={1} suffix="zł" hint={`rekomendowana ${formatPLN(settings.recommendedPrice, { decimals: 0 })}, minimum na Allegro ok. ${formatPLN(settings.minAllegroPrice, { decimals: 0 })}`} />
             <Slider label="Prowizja" value={v.commissionPct} onChange={(commissionPct) => set({ commissionPct })} min={0} max={30} step={0.5} suffix="%" hint="Allegro ok. 12%, sprzedaż lokalna 0%" />

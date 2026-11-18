@@ -115,7 +115,7 @@ export default function BatchesPage() {
           />
         </Card>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {list.map((g) => (
             <BatchCard key={g.batch.id} batch={g.batch} balls={g.balls} next={g.next} ready={readyDate(g.batch, settings)} />
           ))}

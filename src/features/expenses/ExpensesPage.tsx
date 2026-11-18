@@ -361,7 +361,7 @@ function Summary({ expenses }: { expenses: Expense[] }) {
   if (!expenses.length) return <p className="py-10 text-center text-sm text-ink-500">Podsumowanie pojawi się po dodaniu wydatków.</p>
 
   return (
-    <div className="grid gap-5 lg:grid-cols-5">
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-5">
       <Card className="lg:col-span-3">
         <CardHeader title="Wydatki w miesiącach" subtitle={`ostatnie ${months.length} mies. · bieżący wyróżniony`} />
         <CardBody>

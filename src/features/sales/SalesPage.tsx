@@ -254,7 +254,7 @@ function Analysis({ business }: { business: Business }) {
   if (!business.sales.length) return <p className="py-10 text-center text-sm text-ink-500">Analiza pojawi się po pierwszej sprzedaży.</p>
   const today = todayISO()
   return (
-    <div className="grid gap-5 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
       <div className="grid grid-cols-2 gap-3 lg:col-span-2 lg:grid-cols-4">
         <Stat label="Przychód" value={formatPLN(business.revenue, { decimals: 0 })} sub="po korektach" />
         <Stat label="Średnia cena" value={business.avgPrice !== null ? formatPLN(business.avgPrice, { decimals: 0 }) : '—'} sub={`rekomendowana ${formatPLN(settings.recommendedPrice, { decimals: 0 })}`} />

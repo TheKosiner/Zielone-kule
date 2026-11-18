@@ -199,7 +199,7 @@ function MonthView({ cursor, byDay, selected, onSelect, batchNumbers, onOpen, on
   const dayEvents = byDay.get(selected) ?? []
 
   return (
-    <div className="grid gap-5 xl:grid-cols-[1fr_20rem]">
+    <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_20rem]">
       <Card className="overflow-hidden p-1.5 sm:p-2">
         <div className="grid grid-cols-7 pb-1 text-center text-xs font-medium text-ink-500">
           {WEEKDAYS_SHORT.map((d) => (
@@ -297,7 +297,7 @@ function WeekView({ cursor, byDay, batchNumbers, onOpen }: ViewProps & { cursor:
   const start = startOfWeek(cursor)
   const days = Array.from({ length: 7 }, (_, i) => addDays(start, i))
   return (
-    <div className="grid gap-3 lg:grid-cols-7 lg:gap-2">
+    <div className="grid grid-cols-1 gap-3 lg:grid-cols-7 lg:gap-2">
       {days.map((d) => {
         const items = byDay.get(d) ?? []
         return (

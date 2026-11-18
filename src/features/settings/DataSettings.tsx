@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { Download, Eraser, HardDrive, Share2, ShieldCheck, Trash2, Upload } from 'lucide-react'
+import { Download, Eraser, HardDrive, Share2, ShieldCheck, Sprout, Trash2, Upload } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Toggle } from '@/components/ui/Form'
 import { Callout } from '@/components/ui/Misc'
 import { useConfirm, useToast } from '@/components/ui/Feedback'
 import { db } from '@/db/db'
 import { backupFileName, exportBackup, importBackup, parseBackup, summarizeBackup } from '@/db/backup'
-import { clearSampleData, countSampleData, resetAll } from '@/db/seed'
+import { clearSampleData, countSampleData, loadSampleData, resetAll } from '@/db/seed'
 import { setKV } from '@/db/repo'
 import { downloadBlob } from '@/lib/download'
 import { formatTimestamp } from '@/lib/dates'
@@ -192,9 +192,22 @@ export function DataSettings() {
           <h3 className="mb-1 text-sm font-semibold text-ink-800">Dane przykładowe</h3>
           <p className="mb-3 text-sm text-ink-500">{sampleCount ? `W aplikacji jest ${sampleCount} przykładowych wpisów do oglądania.` : 'Brak danych przykładowych.'}</p>
           <div className="flex flex-wrap gap-2">
-            <Button variant="warm" icon={<Eraser className="h-4.5 w-4.5" />} onClick={clearSamples} disabled={!sampleCount}>
-              Wyczyść dane przykładowe
-            </Button>
+            {sampleCount ? (
+              <Button variant="warm" icon={<Eraser className="h-4.5 w-4.5" />} onClick={clearSamples}>
+                Wyczyść dane przykładowe
+              </Button>
+            ) : (
+              <Button
+                variant="soft"
+                icon={<Sprout className="h-4.5 w-4.5" />}
+                onClick={async () => {
+                  await loadSampleData()
+                  toast.show('Wczytano dane przykładowe – znajdziesz je oznaczone jako „przykład”')
+                }}
+              >
+                Wczytaj dane przykładowe
+              </Button>
+            )}
             <Button variant="danger-soft" icon={<Trash2 className="h-4.5 w-4.5" />} onClick={wipe}>
               Usuń wszystkie dane
             </Button>

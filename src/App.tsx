@@ -5,6 +5,7 @@ import { SettingsProvider } from '@/hooks/useSettings'
 import { AppShell } from '@/components/layout/AppShell'
 import { Splash } from '@/components/layout/Splash'
 import { TaskCompletionProvider } from '@/features/calendar/TaskCompletion'
+import { PwaManager } from '@/components/layout/PwaManager'
 
 const DashboardPage = lazy(() => import('@/features/dashboard/DashboardPage'))
 const BatchesPage = lazy(() => import('@/features/batches/BatchesPage'))
@@ -31,6 +32,7 @@ export function App() {
     <HashRouter>
       <ScrollToTop />
       <FeedbackProvider>
+        <PwaManager />
         <SettingsProvider fallback={<Splash />}>
           <TaskCompletionProvider>
           <AppShell>

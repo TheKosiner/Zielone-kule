@@ -192,7 +192,7 @@ export default function BusinessPlanPage() {
         title="Inwestycja startowa i próg rentowności"
         lead={`Start z materiałami na ok. ${settings.startupBalls} kul kosztuje ok. ${formatPLN(settings.startupBudget, { decimals: 0 })}. Zwraca się po sprzedaży ${kul(breakEven)} po ${formatPLN(settings.recommendedPrice, { decimals: 0 })}.`}
       >
-        <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.4fr_1fr]">
           <PlanTable
             head={['Pozycja z planu', 'Koszt', 'Starczy na']}
             align={['left', 'right', 'left']}

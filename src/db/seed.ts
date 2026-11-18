@@ -3,7 +3,7 @@
 // Przykładowe mają flagę sample: true.
 import { db } from './db'
 import { buildEntity, getKV, setKV } from './repo'
-import { createDefaultSettings } from './defaults'
+import { createDefaultSettings, withDefaults } from './defaults'
 import type { Expense, PlannedPurchase } from './types'
 import { addDays, todayISO } from '@/lib/dates'
 import { seedDemoProduction } from './seedProduction'
@@ -83,6 +83,15 @@ export async function seedAll(withDemo = true): Promise<void> {
     await setKV('seedVersion', SEED_VERSION)
   })
   if (withDemo) await seedDemoProduction(settings, today)
+}
+
+/** Ponownie wczytuje dane przykładowe (np. do testów po wyczyszczeniu) */
+export async function loadSampleData(): Promise<void> {
+  if ((await countSampleData()) > 0) return
+  const today = todayISO()
+  const settings = withDefaults(await db.settings.get('main'))
+  await db.expenses.bulkAdd(demoExpenses(today))
+  await seedDemoProduction(settings, today)
 }
 
 /** Usuwa wszystko, co ma flagę sample (w tym zdjęcia) */

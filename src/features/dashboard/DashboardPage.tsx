@@ -108,7 +108,7 @@ export default function DashboardPage() {
         </Callout>
       )}
 
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         {/* Dziś do zrobienia */}
         <Card className="overflow-hidden lg:col-span-2 lg:row-span-2">
           <CardHeader
