@@ -49,7 +49,6 @@ export function CostComparison({ compact }: { compact?: boolean }) {
                 <tr key={i.item.key} className="border-b border-ink-100 last:border-0">
                   <td className="py-2.5 pr-2 pl-4 text-ink-800 sm:pl-0">
                     {i.item.name}
-                    {i.item.kind === 'packaging' && <span className="ml-1 text-xs text-ink-400">(na wysyłkę)</span>}
                   </td>
                   <td className="px-2 py-2.5 text-right text-ink-500 tabular">{formatPLN(i.planned)}</td>
                   <td className={cn('px-2 py-2.5 text-right font-medium tabular', i.actual === null ? 'text-ink-300' : over ? 'text-clay-600' : 'text-moss-700')}>

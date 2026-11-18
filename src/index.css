@@ -131,6 +131,9 @@
   .print-avoid {
     break-inside: avoid;
   }
+  .print-keep-next {
+    break-after: avoid;
+  }
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -138,4 +141,38 @@
 }
 .print-only {
   display: none;
+}
+
+/* Suwak kalkulatora: gruby tor i duży uchwyt (łatwy do złapania palcem) */
+.zk-range::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--color-moss-600) var(--pct), var(--color-ink-150) var(--pct));
+}
+.zk-range::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-ink-150);
+}
+.zk-range::-moz-range-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-moss-600);
+}
+.zk-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -9px;
+  height: 26px;
+  width: 26px;
+  border-radius: 999px;
+  background: white;
+  border: 2px solid var(--color-moss-700);
+  box-shadow: 0 1px 4px rgb(31 40 30 / 0.25);
+}
+.zk-range::-moz-range-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 999px;
+  background: white;
+  border: 2px solid var(--color-moss-700);
 }
