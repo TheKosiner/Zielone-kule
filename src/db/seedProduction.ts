@@ -1,7 +1,7 @@
 // Przykładowe partie na różnych etapach, z datami liczonymi od „dziś”, żeby zawsze było co oglądać.
 import { db } from './db'
 import { buildEntity } from './repo'
-import type { BallStatus, CalendarEvent, JournalEntry, Measurement, Settings, StageKey, WorkSession } from './types'
+import type { BallStatus, CalendarEvent, JournalEntry, Measurement, Sale, Settings, StageKey, WorkSession } from './types'
 import { addDays } from '@/lib/dates'
 import { createBatch, regenerateSchedule } from '@/domain/production'
 import { planSchedule, type ScheduleKey } from '@/domain/schedule'
@@ -140,6 +140,16 @@ export async function seedDemoProduction(settings: Settings, today: string): Pro
   const [b1, b2, , b4] = created
   const firstBall = (await db.balls.where('batchId').equals(b1.id).sortBy('index'))[0]
   if (firstBall) await db.measurements.add(buildEntity<Measurement>({ batchId: b1.id, ballId: firstBall.id, date: d(-60), type: 'weight', value: 2.4, sample: true }))
+
+  // sprzedaż dwóch kul z partii #1
+  const sold = (await db.balls.where('batchId').equals(b1.id).sortBy('index')).filter((b) => b.status === 'sold')
+  const saleRows: Omit<Sale, 'id' | 'createdAt' | 'updatedAt'>[] = [
+    { date: d(-4), ballIds: [sold[0]?.id].filter(Boolean) as string[], batchId: b1.id, quantity: 1, channel: 'allegro', price: 119, commissionPct: 12, commission: 14.28, shippingCharged: 16.99, shippingCost: 16.99, packagingCost: 6, customer: 'ogrodniczka_77', description: 'Kula ogrodowa z mchem 18 cm', status: 'ok', sample: true },
+    { date: d(-2), ballIds: [sold[1]?.id].filter(Boolean) as string[], batchId: b1.id, quantity: 1, channel: 'local', price: 79, commissionPct: 0, commission: 0, shippingCharged: 0, shippingCost: 0, packagingCost: 0, customer: 'odbiór osobisty', description: 'Kula ogrodowa z mchem 18 cm', status: 'ok', sample: true },
+  ]
+  const sales = saleRows.map((r) => buildEntity<Sale>(r))
+  await db.sales.bulkAdd(sales)
+  for (const s of sales) for (const id of s.ballIds) await db.balls.update(id, { saleId: s.id, statusChangedAt: s.date })
 
   const journal: Omit<JournalEntry, 'id' | 'createdAt' | 'updatedAt'>[] = [
     { date: d(-105), batchId: b1.id, title: 'Pierwszy odlew', text: 'Styropian wypłynął przy pierwszej kuli. Pomogły dwa dystanse z patyczków do szaszłyków. Masa jak mokry twaróg, ok. 2,5 l na kulę.', tags: ['test receptury', 'formy'] },

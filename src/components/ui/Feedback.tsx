@@ -90,7 +90,7 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
           <div className="text-[15px] leading-relaxed text-ink-700">{confirmState?.message}</div>
         </Sheet>
         {createPortal(
-          <div className="pointer-events-none fixed inset-x-0 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-[60] flex flex-col items-center gap-2 px-4 lg:bottom-6">
+          <div className="no-print pointer-events-none fixed inset-x-0 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-[60] flex flex-col items-center gap-2 px-4 lg:bottom-6">
             {toasts.map((t) => (
               <div
                 key={t.id}
